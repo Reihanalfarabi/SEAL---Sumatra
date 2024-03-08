@@ -29,5 +29,5 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        name: name_display_artifact
+        name: sumatra_artifact
         path: .  # Mengunggah ke path utama repository
