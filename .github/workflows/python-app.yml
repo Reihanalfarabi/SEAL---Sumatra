@@ -1,0 +1,33 @@
+name: Display Names
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt || true  # Tambahkan || true untuk melanjutkan jika tidak ada file requirements.txt
+
+    - name: Run Python script
+      run: python main.py  # Menggunakan main.py sebagai nama file skrip Python
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: sumatra_artifact
+        path: .  # Mengunggah ke path utama repository
